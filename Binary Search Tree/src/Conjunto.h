@@ -45,7 +45,7 @@ class Conjunto
         // Muestra el conjunto.
         void mostrar(std::ostream&) const;
 
-
+        //void destructorDeNodos();
 
 
     private:
@@ -126,6 +126,7 @@ class Conjunto
 
         unsigned int cardinalAux(Nodo* r) const;
 
+        void destruirNodos(Nodo* r);
 };
 
 template<class T>

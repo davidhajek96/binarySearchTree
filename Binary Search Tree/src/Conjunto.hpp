@@ -5,9 +5,22 @@ template <class T>
 Conjunto<T>::Conjunto() : _raiz(nullptr){
 }
 
+template<class T>
+void Conjunto<T>::destruirNodos(Conjunto::Nodo *r) {
+
+    if(r != nullptr){
+        destruirNodos(r->izq);
+        destruirNodos(r->der);
+        delete r;
+    }
+
+}
+
 template <class T>
 Conjunto<T>::~Conjunto() { 
-    // Completar
+    Nodo* actual = _raiz;
+    destruirNodos(_raiz);
+
 }
 
 template <class T>
@@ -21,9 +34,10 @@ bool Conjunto<T>::pertenece(const T& clave) const {
 template <class T>
 void Conjunto<T>::insertar(const T& clave) {
 
-    Nodo* ainsertar = new Nodo(clave);
+
     //Nodo ainsertar = Nodo(clave);
     if (!pertenece(clave)){
+        Nodo* ainsertar = new Nodo(clave);
         Nodo* padre = buscarNodoPadre(_raiz,clave);
         if(padre == nullptr){
             _raiz = ainsertar;
@@ -34,8 +48,8 @@ void Conjunto<T>::insertar(const T& clave) {
                 padre->der = ainsertar;
         }
     }
-    ainsertar = nullptr;
-    delete ainsertar;
+    //ainsertar = NULL;
+    //delete ainsertar;
 
 
 }
